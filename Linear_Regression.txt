@@ -1,0 +1,49 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+
+x=np.array([5,7,9,3,6])
+y=np.array([6,6,8,1,5])
+
+# Initialize variables to 0
+sq_x = 0
+sq_y = 0
+xy = 0
+
+# Use len(x) to get the correct number of iterations
+n=len(x) 
+
+#calculate sum and mean of x,y
+sum_x,sum_y=np.sum(x),np.sum(y)
+mean_x,mean_y=np.mean(x),np.mean(y)
+
+for i in range (n):
+  x_bar=x[i]-mean_x
+  sq_x+=x_bar*x_bar
+  y_bar=y[i]-mean_y
+  sq_y+=y_bar*y_bar
+  xy+=x_bar*y_bar
+
+z=math.sqrt(sq_x*sq_y)
+r=xy/z
+m=xy/sq_x
+
+c=np.mean(y)-(m*np.mean(x))
+
+# Calculate y_pred using the calculated values of m and c
+y_pred = m * x + c
+
+#print values of m and c and r
+print (m)
+print (c)
+print (r)
+
+
+#plot the values in the given graph
+
+plt.scatter(x, y, color="blue", label="Original data")
+plt.plot(x, y_pred, color="red", label="Fitted line")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.legend()
+plt.show()
